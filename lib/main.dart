@@ -1,9 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:policesfs/Dashboard.dart';
+import 'package:policesfs/manageorders/orders_screen.dart';
+import 'package:policesfs/manageorders/orderstabscreen.dart';
 import 'package:policesfs/screen/HomeSreen.dart';
 import 'package:policesfs/screen/Signscreen.dart';
 import 'package:policesfs/screen/Signupscreen..dart';
+import 'package:policesfs/screen/chat.dart';
 import 'package:policesfs/screen/splash.dart';
 import 'package:provider/provider.dart';
 
@@ -72,9 +76,14 @@ class _MyAppState extends State<MyApp> {
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
           title: 'Police SFS',
-          theme: ThemeData(primarySwatch: Colors.lightBlue),
+          theme: ThemeData(
+            backgroundColor: Colors.blue[900],
+            primarySwatch: Colors.lightBlue,
+            accentColor: Colors.amber,
+            fontFamily: 'QuickSand',
+          ),
           home: auth.isAuth
-              ? MyHomePage()
+              ? Complainantdashboard()
               : FutureBuilder(
                   future: auth.autoLogin(),
                   builder: (ctx, authSnapshot) =>
@@ -84,7 +93,10 @@ class _MyAppState extends State<MyApp> {
                 ),
           routes: {
             SignUp.routeName: (ctx) => SignUp(),
-            MyHomePage.routeName: (ctx) => MyHomePage(),
+            Complainantdashboard.routeName: (ctx) => Complainantdashboard(),
+            ComplaintHistory.routeName: (ctx) => ComplaintHistory(),
+            ComplaintTrack.routeName: (ctx) => ComplaintTrack(),
+            Chat.routeName: (ctx) => Chat(),
           },
         ),
       ),

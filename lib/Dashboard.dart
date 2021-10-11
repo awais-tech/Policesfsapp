@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:policesfs/manageorders/orders_screen.dart';
+import 'package:policesfs/manageorders/orderstabscreen.dart';
+import 'package:policesfs/screen/chat.dart';
 
 class Complainantdashboard extends StatelessWidget {
+  static final routeName = "Dsshborad";
   final List<String> navigators = [
     "Home",
     "About Us",
@@ -9,6 +13,7 @@ class Complainantdashboard extends StatelessWidget {
     "Notifications",
     "Settings",
   ];
+
   static List<IconData> navigatorsIcon = [
     Icons.home,
     Icons.local_police_outlined,
@@ -45,16 +50,20 @@ class Complainantdashboard extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  UserAccountsDrawerHeader(
-                    accountEmail: Text('daniyalayyaz86@gmaill.com'),
-                    accountName: Text('Daniyal Ayyaz'),
-                    currentAccountPicture: CircleAvatar(
-                      backgroundColor: Colors.red,
+                  Container(
+                    color: Colors.blue,
+                    child: UserAccountsDrawerHeader(
+                      decoration: BoxDecoration(color: Colors.blue),
+                      accountEmail: Text('daniyalayyaz86@gmaill.com'),
+                      accountName: Text('Daniyal Ayyaz'),
+                      currentAccountPicture: CircleAvatar(
+                        backgroundColor: Colors.red,
+                      ),
                     ),
                   ),
                   Container(
                     color: Colors.blue[900],
-                    height: constraints.minHeight * 0.75,
+                    height: constraints.minHeight * 0.7,
                     child: ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         itemCount: navigators.length,
@@ -191,7 +200,10 @@ class Complainantdashboard extends StatelessWidget {
                             color: Colors.pink,
                             elevation: 8,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).pushReplacementNamed(
+                                    ComplaintHistory.routeName);
+                              },
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
@@ -231,7 +243,10 @@ class Complainantdashboard extends StatelessWidget {
                             elevation: 8,
                             color: Colors.amber[400],
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushReplacementNamed(Chat.routeName);
+                              },
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
@@ -308,7 +323,10 @@ class Complainantdashboard extends StatelessWidget {
                             elevation: 8,
                             color: Colors.cyanAccent[400],
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).pushReplacementNamed(
+                                    ComplaintTrack.routeName);
+                              },
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
