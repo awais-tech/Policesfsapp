@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "281692856105",
+    "project_id": "police-sfs",
+    "storage_bucket": "police-sfs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281692856105:android:809b107215fe5fcd6ba138",
+        "android_client_info": {
+          "package_name": "com.example.policesfs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281692856105-6ek96ra6sb5o09778cqt7gc00b61l41e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgsQcR-MkFf7N8ab74upkRe7SNN4C2R2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281692856105-6ek96ra6sb5o09778cqt7gc00b61l41e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281692856105:android:a81744e97fd3897c6ba138",
+        "android_client_info": {
+          "package_name": "com.police.policesfs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281692856105-6ek96ra6sb5o09778cqt7gc00b61l41e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgsQcR-MkFf7N8ab74upkRe7SNN4C2R2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281692856105-6ek96ra6sb5o09778cqt7gc00b61l41e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
