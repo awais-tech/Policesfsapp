@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-import 'package:policesfs/screen/Signupscreen..dart';
+import 'package:policesfs/screen/Auth/Signupscreen..dart';
 
 class Splash extends StatefulWidget {
   @override

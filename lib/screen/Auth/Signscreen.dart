@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:policesfs/screen/Signupscreen..dart';
+import 'package:policesfs/providers/Auth.dart';
+import 'package:policesfs/screen/Auth/Signupscreen..dart';
 import 'package:provider/provider.dart';
-
-import '../providers/auth.dart';
+import 'package:location/location.dart';
 
 class SignIn extends StatefulWidget {
   static const routeName = '/signin';
@@ -24,7 +24,7 @@ class _SignInState extends State<SignIn> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('An Error Occurred!'),
+        title: Text('Alert!'),
         content: Text(message),
         actions: [
           TextButton(
@@ -51,8 +51,7 @@ class _SignInState extends State<SignIn> {
     } on FirebaseAuthException catch (error) {
       _showErrorDialogue(error.message!);
     } catch (error) {
-      print(error);
-      _showErrorDialogue("Authentication Failed");
+      _showErrorDialogue(error.toString());
     }
     setState(() {
       _loading = false;
@@ -74,14 +73,23 @@ class _SignInState extends State<SignIn> {
                 Flexible(
                   flex: 1,
                   fit: FlexFit.tight,
-                  child: Center(
-                    child: Text(
-                      'E-Solution for Waste Management',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Center(
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          "WELCOME TO Police Sfs",
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontSize: (MediaQuery.of(context).size.width -
+                                    MediaQuery.of(context).padding.top) *
+                                0.060,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff8d43d6),
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -90,8 +98,8 @@ class _SignInState extends State<SignIn> {
                   flex: 2,
                   fit: FlexFit.loose,
                   child: Container(
-                    width: deviceSize.width * 0.75,
-                    height: deviceSize.height * 0.50,
+                    width: deviceSize.width * 0.90,
+                    height: deviceSize.height * 0.64,
                     child: Card(
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
@@ -102,7 +110,6 @@ class _SignInState extends State<SignIn> {
                             children: [
                               TextFormField(
                                 decoration: InputDecoration(labelText: 'Email'),
-                                keyboardType: TextInputType.emailAddress,
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter the eamil';

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NewMessage extends StatefulWidget {
   @override
@@ -13,6 +16,8 @@ class _NewMessageState extends State<NewMessage> {
 
   void _sendMessage() async {
     FocusScope.of(context).unfocus();
+    final shared = await SharedPreferences.getInstance();
+    final detail = json.decode(shared.getString('userinfo') as String);
     // final user = await FirebaseAuth.instance.currentUser();
     // final userData = await FirebaseFirestore.instance
     //     .collection('users')
@@ -21,10 +26,10 @@ class _NewMessageState extends State<NewMessage> {
     FirebaseFirestore.instance.collection('chat').add({
       'message': _enteredMessage,
       'date': Timestamp.now(),
-      'senderid': 'BXwySkot9bw59oDsbhNJ',
+      'senderid': detail['uid'],
       'receiverid': 'BXwySkot9bw59oDsbhN',
-      'SenderName': 'Ali',
-      'role': 'Admin'
+      'SenderName': detail['name'],
+      'role': 'User'
     });
     _controller.clear();
   }

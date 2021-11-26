@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:policesfs/Screen/message_bubble.dart';
+import 'package:policesfs/widgets/chat/message_bubble.dart';
 
 class Messages extends StatelessWidget {
   @override
@@ -21,20 +21,25 @@ class Messages extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          final name = 'BXwySkot9bw59oDsbhNJ';
-          final nam = 'BXwySkot9bw59oDsbhN';
+
           final chatDocs = chatSnapshot.data!.docs;
           return ListView.builder(
             reverse: true,
             itemCount: chatDocs.length,
-            itemBuilder: (ctx, index) => MessageBubble(
-              chatDocs[index]['message'],
-              chatDocs[index]['SenderName'],
-              chatDocs[index]['role'],
-              chatDocs[index]['senderid'] == name,
-              chatDocs[index]['receiverid'],
-              key: ValueKey(chatDocs[index].id),
-            ),
+            itemBuilder: (ctx, index) => (chatDocs[index]['senderid'] ==
+                        FirebaseAuth.instance.currentUser!.uid ||
+                    chatDocs[index]['receiverid'] ==
+                        FirebaseAuth.instance.currentUser!.uid)
+                ? MessageBubble(
+                    chatDocs[index]['message'],
+                    chatDocs[index]['SenderName'],
+                    chatDocs[index]['role'],
+                    chatDocs[index]['senderid'] ==
+                        FirebaseAuth.instance.currentUser!.uid,
+                    chatDocs[index]['receiverid'],
+                    key: ValueKey(chatDocs[index].id),
+                  )
+                : Container(),
           );
         });
   }

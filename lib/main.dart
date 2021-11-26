@@ -1,17 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:policesfs/Dashboard.dart';
-import 'package:policesfs/manageorders/orders_screen.dart';
-import 'package:policesfs/manageorders/orderstabscreen.dart';
-import 'package:policesfs/screen/HomeSreen.dart';
-import 'package:policesfs/screen/Signscreen.dart';
-import 'package:policesfs/screen/Signupscreen..dart';
-import 'package:policesfs/screen/chat.dart';
+import 'package:policesfs/providers/Auth.dart';
+import 'package:policesfs/providers/Complaints.dart';
+
+import 'package:policesfs/providers/utilities.dart';
+import 'package:policesfs/screen/Aboutus.dart';
+import 'package:policesfs/screen/Auth/Signscreen.dart';
+import 'package:policesfs/screen/Auth/Signupscreen..dart';
+import 'package:policesfs/screen/Chat/chat.dart';
+import 'package:policesfs/screen/Dashboard.dart';
+import 'package:policesfs/screen/ManageComplaints/ComplaintEmergency.dart';
+import 'package:policesfs/screen/ManageComplaints/ComplaintHistoryScreen.dart';
+import 'package:policesfs/screen/ManageComplaints/RegisteredComplaints.dart';
+import 'package:policesfs/screen/ManageComplaints/orderstabscreen.dart';
 import 'package:policesfs/screen/splash.dart';
 import 'package:provider/provider.dart';
-
-import './providers/auth.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -72,16 +76,17 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (ctx) => Auth(),
         ),
+        ChangeNotifierProvider(
+          create: (ctx) => Utilities(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Complaints(),
+        ),
       ],
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
           title: 'Police SFS',
-          theme: ThemeData(
-            backgroundColor: Colors.blue[900],
-            primarySwatch: Colors.lightBlue,
-            accentColor: Colors.amber,
-            fontFamily: 'QuickSand',
-          ),
+          theme: ThemeData(primarySwatch: Colors.blue),
           home: auth.isAuth
               ? Complainantdashboard()
               : FutureBuilder(
@@ -97,23 +102,12 @@ class _MyAppState extends State<MyApp> {
             ComplaintHistory.routeName: (ctx) => ComplaintHistory(),
             ComplaintTrack.routeName: (ctx) => ComplaintTrack(),
             Chat.routeName: (ctx) => Chat(),
+            Addcomplaint.routeName: (ctx) => Addcomplaint(),
+            ComplaintEmergency.routeName: (ctx) => ComplaintEmergency(),
+            AboutUs.routeName: (ctx) => AboutUs(),
           },
         ),
       ),
     );
   }
 }
-
-// class MyHomePage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('E-Solution for WM'),
-//       ),
-//       body: Center(
-//         child: Text('Loading..'),
-//       ),
-//     );
-//   }
-// }

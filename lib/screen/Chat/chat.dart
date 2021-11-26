@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:policesfs/Screen/messages.dart';
-import 'package:policesfs/Screen/new_message.dart';
+import 'package:policesfs/widgets/chat/messages.dart';
+import 'package:policesfs/widgets/chat/new_message.dart';
 
 class Chat extends StatelessWidget {
   static final routeName = 'Chat';
@@ -11,10 +10,16 @@ class Chat extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.pink[900],
-          title: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: TextButton(onPressed: () {}, child: Text('Logout')))),
+        backgroundColor: Colors.blue[900],
+        title: Container(
+          padding: EdgeInsets.all(20),
+          width: double.infinity,
+          child: Text(
+            'Chat',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
       body: Row(
         children: [
           Expanded(

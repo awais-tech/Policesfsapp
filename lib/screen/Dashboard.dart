@@ -1,26 +1,42 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:policesfs/manageorders/orders_screen.dart';
-import 'package:policesfs/manageorders/orderstabscreen.dart';
-import 'package:policesfs/screen/chat.dart';
+import 'package:policesfs/Constants.dart';
+import 'package:policesfs/providers/Auth.dart';
 
-class Complainantdashboard extends StatelessWidget {
-  static final routeName = "Dsshborad";
-  final List<String> navigators = [
-    "Home",
-    "About Us",
-    "Profile",
-    "Notifications",
-    "Settings",
-  ];
+import 'package:policesfs/screen/ManageComplaints/ComplaintHistoryScreen.dart';
+import 'package:policesfs/screen/ManageComplaints/RegisteredComplaints.dart';
 
+import 'package:policesfs/screen/ManageComplaints/orderstabscreen.dart';
+import 'package:policesfs/screen/Chat/chat.dart';
+import 'package:policesfs/widgets/drawner/drawner.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class Complainantdashboard extends StatefulWidget {
+  static final routeName = "home";
   static List<IconData> navigatorsIcon = [
     Icons.home,
     Icons.local_police_outlined,
     Icons.person_outlined,
-    Icons.notifications,
-    Icons.settings,
+    Icons.message
   ];
+
+  @override
+  _ComplainantdashboardState createState() => _ComplainantdashboardState();
+}
+
+class _ComplainantdashboardState extends State<Complainantdashboard> {
+  var prefs;
+
+  final List<String> navigators = [
+    "Home",
+    "About Us",
+    "Emergency Complaint detail",
+    "Whats app",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +45,14 @@ class Complainantdashboard extends StatelessWidget {
           title: FittedBox(fit: BoxFit.fitWidth, child: Text('Dashboard')),
           actions: <Widget>[
             ElevatedButton(
-              onPressed: () => {},
+              onPressed: () async {
+                var url = "tel:03324343256";
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw url;
+                }
+              },
               style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -44,52 +67,7 @@ class Complainantdashboard extends StatelessWidget {
             ),
           ],
         ),
-        drawer: Drawer(
-          elevation: 30,
-          child: LayoutBuilder(builder: (ctx, constraints) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    color: Colors.blue,
-                    child: UserAccountsDrawerHeader(
-                      decoration: BoxDecoration(color: Colors.blue),
-                      accountEmail: Text('daniyalayyaz86@gmaill.com'),
-                      accountName: Text('Daniyal Ayyaz'),
-                      currentAccountPicture: CircleAvatar(
-                        backgroundColor: Colors.red,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: Colors.blue[900],
-                    height: constraints.minHeight * 0.7,
-                    child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: navigators.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            margin: EdgeInsets.only(top: 3),
-                            child: ListTile(
-                              onTap: () {},
-                              leading: Icon(
-                                navigatorsIcon[index],
-                                color: Colors.white,
-                              ),
-                              title: Text(
-                                "${navigators[index]}",
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
-                ],
-              ),
-            );
-          }),
-        ),
+        drawer: Drawner(navigators: navigators),
         body: LayoutBuilder(builder: (ctx, constraints) {
           return Center(
             child: Container(
@@ -201,8 +179,8 @@ class Complainantdashboard extends StatelessWidget {
                             elevation: 8,
                             child: InkWell(
                               onTap: () {
-                                Navigator.of(context).pushReplacementNamed(
-                                    ComplaintHistory.routeName);
+                                Navigator.of(context)
+                                    .pushNamed(ComplaintHistory.routeName);
                               },
                               child: Column(
                                 mainAxisAlignment:
@@ -215,6 +193,7 @@ class Complainantdashboard extends StatelessWidget {
                                   ),
                                   Text(
                                     "Complaints History",
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 13,
@@ -244,8 +223,7 @@ class Complainantdashboard extends StatelessWidget {
                             color: Colors.amber[400],
                             child: InkWell(
                               onTap: () {
-                                Navigator.of(context)
-                                    .pushReplacementNamed(Chat.routeName);
+                                Navigator.of(context).pushNamed(Chat.routeName);
                               },
                               child: Column(
                                 mainAxisAlignment:
@@ -285,7 +263,10 @@ class Complainantdashboard extends StatelessWidget {
                             elevation: 8,
                             color: Colors.pink[200],
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed(Addcomplaint.routeName);
+                              },
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
@@ -324,8 +305,8 @@ class Complainantdashboard extends StatelessWidget {
                             color: Colors.cyanAccent[400],
                             child: InkWell(
                               onTap: () {
-                                Navigator.of(context).pushReplacementNamed(
-                                    ComplaintTrack.routeName);
+                                Navigator.of(context)
+                                    .pushNamed(ComplaintTrack.routeName);
                               },
                               child: Column(
                                 mainAxisAlignment:
@@ -364,7 +345,10 @@ class Complainantdashboard extends StatelessWidget {
                               elevation: 8,
                               color: Colors.deepOrange[700],
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Provider.of<Auth>(context, listen: false)
+                                      .logout();
+                                },
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
