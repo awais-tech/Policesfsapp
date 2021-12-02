@@ -101,6 +101,7 @@ class _SignInState extends State<SignIn> {
                     width: deviceSize.width * 0.90,
                     height: deviceSize.height * 0.64,
                     child: Card(
+                      color: Colors.grey.shade200,
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Form(

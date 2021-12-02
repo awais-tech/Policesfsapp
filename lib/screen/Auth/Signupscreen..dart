@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_statements
+
 import 'dart:io';
 
 import 'package:dropdown_plus/dropdown_plus.dart';
@@ -155,7 +157,7 @@ class _SignUpFormState extends State<SignUpForm> {
     // _submit();
   }
 
-  void _showErrorDialogue(String message) {
+  void _showErrorDialogue(bool check, String message) {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -165,6 +167,9 @@ class _SignUpFormState extends State<SignUpForm> {
           TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
+                check ? Navigator.of(context).pop() : null;
+                check ? Navigator.of(context).pop() : null;
+                check ? Navigator.of(context).pop() : null;
               },
               child: Text('Okay')),
         ],
@@ -180,7 +185,7 @@ class _SignUpFormState extends State<SignUpForm> {
     if (!_serviceEnabled) {
       _serviceEnabled = await location.requestService();
       if (!_serviceEnabled) {
-        _showErrorDialogue("Please allow permission");
+        _showErrorDialogue(false, "Please allow permission");
         return;
       }
     }
@@ -189,7 +194,7 @@ class _SignUpFormState extends State<SignUpForm> {
     if (_permissionGranted == PermissionStatus.denied) {
       _permissionGranted = await location.requestPermission();
       if (_permissionGranted != PermissionStatus.granted) {
-        _showErrorDialogue("Please allow permission");
+        _showErrorDialogue(false, "Please allow permission");
         return;
       }
     }
@@ -215,7 +220,7 @@ class _SignUpFormState extends State<SignUpForm> {
             val,
             need["phone"],
             '${_locationData.latitude},${_locationData.longitude}');
-        _showErrorDialogue(
+        _showErrorDialogue(true,
             "Your Complaint is submitted officer will reach your location soon");
       } else {
         if (val != 'Fir') {
@@ -236,14 +241,14 @@ class _SignUpFormState extends State<SignUpForm> {
           '${_locationData.latitude},${_locationData.longitude}',
         );
 
-        _showErrorDialogue("Your complaint has been submited");
-        Navigator.of(context).pop();
+        _showErrorDialogue(true,
+            "Your complaint has been submited Log in to track your Complaint");
       }
     } on FirebaseAuthException catch (error) {
-      _showErrorDialogue(error.message!);
+      _showErrorDialogue(false, error.message!);
     } catch (error) {
       print(error);
-      _showErrorDialogue("Something Goes wrong");
+      _showErrorDialogue(false, "Something Goes wrong");
     }
     setState(() {
       _loading = false;

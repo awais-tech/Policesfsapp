@@ -59,6 +59,27 @@ class Auth extends ChangeNotifier {
                 complainer.houseNo +
                 ','
           });
+          final userinfo = json.encode({
+            'name': complainer.name,
+            'email': email,
+            'streetNo': complainer.streetNo,
+            'houseNo': complainer.houseNo,
+            'area': complainer.area,
+            'city': complainer.city,
+            'age': complainer.age,
+            'phoneno': complainer.phoneno,
+            'uid': _userId,
+            'address': complainer.city +
+                ',' +
+                complainer.area +
+                ',' +
+                complainer.streetNo +
+                ',' +
+                complainer.houseNo +
+                ','
+          });
+
+          await prefs.setString('userinfo', userinfo);
           final shared = await SharedPreferences.getInstance();
           final phone = json.decode(shared.getString('userinfo') as String);
           await complaints.add({
@@ -74,7 +95,7 @@ class Auth extends ChangeNotifier {
             'imageUrl': image,
             'sent by': complaint.sentby,
             'status': 'pending',
-            'phone ': complainer.phoneno,
+            'phone': complainer.phoneno,
             'userinfo ': phone,
             'sub category': complaint.subcategory,
             'Complaint Location': location,
@@ -84,28 +105,8 @@ class Auth extends ChangeNotifier {
             // 'PoliceStationID': pid,
           });
         });
-        final userinfo = json.encode({
-          'name': complainer.name,
-          'email': email,
-          'streetNo': complainer.streetNo,
-          'houseNo': complainer.houseNo,
-          'area': complainer.area,
-          'city': complainer.city,
-          'age': complainer.age,
-          'phoneno': complainer.phoneno,
-          'uid': _userId,
-          'address': complainer.city +
-              ',' +
-              complainer.area +
-              ',' +
-              complainer.streetNo +
-              ',' +
-              complainer.houseNo +
-              ','
-        });
-
-        await prefs.setString('userinfo', userinfo);
       });
+      notifyListeners();
     } catch (e) {
       print(e);
       throw e;
