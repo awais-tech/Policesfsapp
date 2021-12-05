@@ -13,8 +13,7 @@ class OrdersInProcess extends StatelessWidget {
   final stream = FirebaseFirestore.instance
       .collection('Complaints')
       .where('Userid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-      .where('status', isEqualTo: 'Active')
-      .snapshots();
+      .where('status', whereIn: ['Active', 'Assigned']).snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

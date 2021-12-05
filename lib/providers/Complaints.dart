@@ -75,7 +75,7 @@ class Complaints extends ChangeNotifier {
           'Userid': FirebaseAuth.instance.currentUser!.uid,
           'imageUrl': image,
           'sent by': complaint.sentby,
-          'status': 'pending',
+          'status': 'disapprove',
           'sub category': complaint.subcategory,
           'Complaint Location': _locationData,
           'phone': phone['phoneno'],

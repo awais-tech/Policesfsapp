@@ -94,7 +94,7 @@ class Auth extends ChangeNotifier {
             'Userid': _userId,
             'imageUrl': image,
             'sent by': complaint.sentby,
-            'status': 'pending',
+            'status': 'disapprove',
             'phone': complainer.phoneno,
             'userinfo ': phone,
             'sub category': complaint.subcategory,

@@ -166,10 +166,7 @@ class _SignUpFormState extends State<SignUpForm> {
         actions: [
           TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
-                check ? Navigator.of(context).pop() : null;
-                check ? Navigator.of(context).pop() : null;
-                check ? Navigator.of(context).pop() : null;
+                Navigator.of(context).popUntil((route) => route.isFirst);
               },
               child: Text('Okay')),
         ],

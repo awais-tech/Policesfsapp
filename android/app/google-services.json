@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:281692856105:android:809b107215fe5fcd6ba138",
+        "mobilesdk_app_id": "1:281692856105:android:fbd250e01c6d3ba66ba138",
         "android_client_info": {
           "package_name": "com.example.policesfs"
         }
@@ -36,9 +36,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:281692856105:android:a81744e97fd3897c6ba138",
+        "mobilesdk_app_id": "1:281692856105:android:b43e07fb337bc6f76ba138",
         "android_client_info": {
-          "package_name": "com.police.policesfs"
+          "package_name": "com.example.policestaffapp"
         }
       },
       "oauth_client": [
