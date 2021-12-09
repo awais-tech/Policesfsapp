@@ -66,7 +66,7 @@ class _SignInState extends State<SignIn> {
         child: SingleChildScrollView(
           child: Container(
             width: deviceSize.width,
-            height: deviceSize.height,
+            height: deviceSize.height / 1.2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -79,14 +79,14 @@ class _SignInState extends State<SignIn> {
                       child: Container(
                         padding: EdgeInsets.all(20),
                         child: Text(
-                          "WELCOME TO Police Sfs",
+                          "WELCOME TO POLICE SFS",
                           style: TextStyle(
                             fontStyle: FontStyle.italic,
                             fontSize: (MediaQuery.of(context).size.width -
                                     MediaQuery.of(context).padding.top) *
                                 0.060,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff8d43d6),
+                            color: Colors.blue[900],
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -121,6 +121,9 @@ class _SignInState extends State<SignIn> {
                                   _authData['email'] = value!;
                                 },
                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
                               TextFormField(
                                 decoration: InputDecoration(
                                   labelText: 'Password',
@@ -136,12 +139,16 @@ class _SignInState extends State<SignIn> {
                                 },
                               ),
                               SizedBox(
-                                height: 8,
+                                height: 20,
                               ),
                               if (_loading)
                                 CircularProgressIndicator()
                               else
                                 ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.red[900])),
                                   onPressed: () => _submit(),
                                   child: Text('LOGIN'),
                                 ),
@@ -150,7 +157,10 @@ class _SignInState extends State<SignIn> {
                                   Navigator.of(context)
                                       .pushNamed(SignUp.routeName);
                                 },
-                                child: Text('SIGNUP INSTED'),
+                                child: Text(
+                                  'SIGNUP INSTEAD',
+                                  style: TextStyle(color: Colors.red[900]),
+                                ),
                               ),
                             ],
                           ),

@@ -38,7 +38,7 @@ class SignUp extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey,
+                    color: Colors.blue[900],
                   ),
                 ),
               ),
@@ -271,9 +271,9 @@ class _SignUpFormState extends State<SignUpForm> {
         : Column(
             children: [
               RadioListTile(
-                activeColor: Color(0xff8d43d6),
+                activeColor: Colors.red[900],
                 groupValue: val,
-                title: const Text('Fir'),
+                title: const Text('F.I.R'),
                 value: 'Fir',
                 onChanged: (String? value) {
                   print(value);
@@ -287,11 +287,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 },
                 secondary: const Icon(
                   Icons.report,
-                  color: Color(0xff8d43d6),
+                  color: Colors.blue,
                 ),
               ),
               RadioListTile(
-                activeColor: Color(0xff8d43d6),
+                activeColor: Colors.red[900],
                 groupValue: val,
                 title: const Text('Report'),
                 value: 'Report',
@@ -305,11 +305,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 },
                 secondary: const Icon(
                   Icons.dangerous,
-                  color: Color(0xff8d43d6),
+                  color: Colors.blue,
                 ),
               ),
               RadioListTile(
-                activeColor: Color(0xff8d43d6),
+                activeColor: Colors.red[900],
                 groupValue: val,
                 title: const Text('Emergency'),
                 value: 'Emergency',
@@ -320,7 +320,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 },
                 secondary: const Icon(
                   Icons.local_police_outlined,
-                  color: Color(0xff8d43d6),
+                  color: Colors.blue,
                 ),
               ),
               Form(
@@ -414,7 +414,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             TextFormField(
                               initialValue: _complainer.houseNo,
                               decoration: InputDecoration(
-                                labelText: 'house No',
+                                labelText: 'House No',
                                 hintText: '887 J2',
                                 prefixIcon: Icon(Icons.house_outlined),
                               ),
@@ -439,7 +439,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             TextFormField(
                               initialValue: _complainer.area,
                               decoration: InputDecoration(
-                                labelText: 'area',
+                                labelText: 'Area',
                                 hintText: 'Johar town',
                                 prefixIcon: Icon(Icons.location_city),
                               ),
@@ -464,7 +464,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             TextFormField(
                               initialValue: _complainer.city,
                               decoration: InputDecoration(
-                                labelText: 'city',
+                                labelText: 'City',
                                 prefixIcon: Icon(Icons.location_city_rounded),
                               ),
                               keyboardType: TextInputType.streetAddress,
@@ -488,7 +488,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             TextFormField(
                               initialValue: _complainer.age,
                               decoration: InputDecoration(
-                                  labelText: 'age',
+                                  labelText: 'Age',
                                   prefixIcon: Icon(Icons.elderly_sharp)),
                               keyboardType: TextInputType.number,
                               validator: (value) {
@@ -784,10 +784,18 @@ class _SignUpFormState extends State<SignUpForm> {
                                         MainAxisAlignment.spaceAround,
                                     children: [
                                       ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.red[900])),
                                         onPressed: () => back(),
                                         child: Text('Back'),
                                       ),
                                       ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.red[900])),
                                         onPressed: () => val != 'Emergency'
                                             ? next()
                                             : _submit(),
@@ -801,7 +809,9 @@ class _SignUpFormState extends State<SignUpForm> {
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('LOGIN INSTED'))
+                                    child: Text('LOGIN INSTEAD',
+                                        style:
+                                            TextStyle(color: Colors.red[900])))
                               ],
                             )
                           : Column(
@@ -856,6 +866,10 @@ class _SignUpFormState extends State<SignUpForm> {
                                         child: Text('Back'),
                                       ),
                                       ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.red[900])),
                                         onPressed: () => _submit(),
                                         child: Text('SIGNUP'),
                                       ),
@@ -866,7 +880,7 @@ class _SignUpFormState extends State<SignUpForm> {
                                       Navigator.of(context)
                                           .pushReplacementNamed('/');
                                     },
-                                    child: Text('LOGIN INSTED'))
+                                    child: Text('LOGIN INSTEAD'))
                               ],
                             )),
             ],
