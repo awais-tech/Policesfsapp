@@ -90,13 +90,13 @@ class Drawner extends StatelessWidget {
                         child: ListTile(
                           onTap: () async {
                             if (navigators[index] ==
-                                "Emergency Complaint detail") {
+                                "Emergency Complaint Details") {
                               Navigator.of(context)
                                   .pushNamed(ComplaintEmergency.routeName);
                             } else if (navigators[index] == "About Us") {
                               Navigator.of(context)
                                   .pushNamed(AboutUs.routeName);
-                            } else if (navigators[index] == "Whats app") {
+                            } else if (navigators[index] == "WhatsApp") {
                               var url =
                                   "whatsapp://send?text=Emgergency need help&phone=+923324343256";
                               if (await canLaunch(url)) {

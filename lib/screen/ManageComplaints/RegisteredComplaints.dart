@@ -29,7 +29,7 @@ class Addcomplaint extends StatelessWidget {
         backgroundColor: Colors.blue[900],
         title: FittedBox(
           fit: BoxFit.fitWidth,
-          child: Text('Registered Complaint'),
+          child: Text('Register New Complaint'),
         ),
       ),
       body: SafeArea(
@@ -258,7 +258,7 @@ class _SignUpFormState extends State<SignUpForm> {
         : Column(
             children: [
               RadioListTile(
-                activeColor: Color(0xff8d43d6),
+                activeColor: Colors.red[900],
                 groupValue: val,
                 title: const Text('Fir'),
                 value: 'Fir',
@@ -271,11 +271,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 },
                 secondary: const Icon(
                   Icons.report,
-                  color: Color(0xff8d43d6),
+                  color: Colors.blue,
                 ),
               ),
               RadioListTile(
-                activeColor: Color(0xff8d43d6),
+                activeColor: Colors.red[900],
                 groupValue: val,
                 title: const Text('Report'),
                 value: 'Report',
@@ -286,11 +286,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 },
                 secondary: const Icon(
                   Icons.dangerous,
-                  color: Color(0xff8d43d6),
+                  color: Colors.blue,
                 ),
               ),
               RadioListTile(
-                activeColor: Color(0xff8d43d6),
+                activeColor: Colors.red[900],
                 groupValue: val,
                 title: const Text('Emergency'),
                 value: 'Emergency',
@@ -301,7 +301,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 },
                 secondary: const Icon(
                   Icons.local_police_outlined,
-                  color: Color(0xff8d43d6),
+                  color: Colors.blue,
                 ),
               ),
               Form(
@@ -310,10 +310,24 @@ class _SignUpFormState extends State<SignUpForm> {
                       ? Column(
                           // crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
+                            SizedBox(height: 20),
                             Container(
                                 child: val == 'Emergency'
-                                    ? Text('Emergency Form')
-                                    : Text('Step 1')),
+                                    ? Text(
+                                        'Emergency Form',
+                                        style: TextStyle(
+                                            color: Colors.blue[900],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      )
+                                    : Text(
+                                        'Step 1',
+                                        style: TextStyle(
+                                            color: Colors.blue[900],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      )),
+                            SizedBox(height: 20),
                             TextFormField(
                               initialValue: complaint.title,
                               decoration: InputDecoration(
@@ -412,12 +426,12 @@ class _SignUpFormState extends State<SignUpForm> {
                             ),
                             TextDropdownFormField(
                                 decoration: InputDecoration(
-                                  labelText: 'Choose sub Category',
+                                  labelText: 'Choose Sub-Category',
                                   suffixIcon: Icon(Icons.arrow_drop_down),
                                 ),
                                 // ignore: unrelated_type_equality_checks
                                 options: problems == []
-                                    ? ['Choose sub Category']
+                                    ? ['Choose Sub-Category']
                                     : problems,
                                 dropdownHeight: 250,
                                 validator: (dynamic value) {
@@ -471,7 +485,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             val == 'Fir'
                                 ? TextFormField(
                                     decoration: InputDecoration(
-                                      labelText: 'Report number if you have',
+                                      labelText: 'Report Number (Optional)',
                                       hintText: '',
                                       prefixIcon: Icon(Icons.report),
                                     ),
@@ -491,10 +505,18 @@ class _SignUpFormState extends State<SignUpForm> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.red[900])),
                                     onPressed: () => back(),
                                     child: Text('Back'),
                                   ),
                                   ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.red[900])),
                                     onPressed: () =>
                                         val != 'Emergency' ? next() : _submit(),
                                     child: val != 'Emergency'
@@ -512,7 +534,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               builder: (ctx, utility, _) =>
                                   TextDropdownFormField(
                                 decoration: InputDecoration(
-                                  labelText: 'Choose PoliceStation',
+                                  labelText: 'Choose Police Station',
                                   suffixIcon: Icon(Icons.arrow_drop_down),
                                 ),
                                 options: utility.policestation.cast<String>(),
@@ -552,10 +574,18 @@ class _SignUpFormState extends State<SignUpForm> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.red[900])),
                                     onPressed: () => back(),
                                     child: Text('Back'),
                                   ),
                                   ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.red[900])),
                                     onPressed: () => _submit(),
                                     child: Text('Submit'),
                                   ),

@@ -19,8 +19,8 @@ class Complainantdashboard extends StatefulWidget {
   static List<IconData> navigatorsIcon = [
     Icons.home,
     Icons.local_police_outlined,
-    Icons.person_outlined,
-    Icons.message
+    Icons.desktop_mac_rounded,
+    Icons.message,
   ];
 
   @override

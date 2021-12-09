@@ -575,15 +575,21 @@ class _SignUpFormState extends State<SignUpForm> {
                               CircularProgressIndicator()
                             else
                               ElevatedButton(
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.red[900])),
                                 onPressed: () => next(),
                                 child: Text('Next'),
                               ),
                             TextButton(
+                                style: ButtonStyle(
+                                    foregroundColor: MaterialStateProperty.all(
+                                        Colors.red[900])),
                                 onPressed: () {
                                   Navigator.of(context)
                                       .pushReplacementNamed('/');
                                 },
-                                child: Text('LOGIN INSTED'))
+                                child: Text('LOGIN INSTEAD'))
                           ],
                         )
                       : (index == 1)

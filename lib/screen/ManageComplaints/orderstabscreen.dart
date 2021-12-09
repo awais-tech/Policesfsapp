@@ -27,12 +27,12 @@ class ComplaintTrack extends StatelessWidget {
                   fit: BoxFit.contain,
                   child: Tab(
                       icon: Icon(Icons.approval_rounded),
-                      text: "Pending Complaint"),
+                      text: "Pending Complaints"),
                 ),
                 FittedBox(
                   child: Tab(
                       icon: Icon(Icons.pending_actions_rounded),
-                      text: "Active Complaint"),
+                      text: "Active Complaints"),
                 ),
               ],
             ),
