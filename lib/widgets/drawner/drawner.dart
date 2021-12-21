@@ -90,7 +90,7 @@ class Drawner extends StatelessWidget {
                         child: ListTile(
                           onTap: () async {
                             if (navigators[index] ==
-                                "Emergency Complaint Details") {
+                                "Emergency Complaint detail") {
                               Navigator.of(context)
                                   .pushNamed(ComplaintEmergency.routeName);
                             } else if (navigators[index] == "About Us") {

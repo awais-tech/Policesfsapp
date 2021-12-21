@@ -46,14 +46,112 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                   children: <Widget>[
                     IconButton(
                       icon: Icon(Icons.details_outlined),
-                      onPressed: () {
-                        showModalBottomSheet(
+                      onPressed: () async {
+                        await showDialog(
                             context: context,
-                            isScrollControlled: true,
-                            builder: (context) {
-                              return editEmail(
-                                  context, "View Detail", widget.comp);
-                            });
+                            builder: (ctx) => AlertDialog(
+                                  content: Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 20.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text('Detail'),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                'PStationName:' +
+                                                    (widget.comp.data()[
+                                                                'PoliceStationName'] ==
+                                                            null
+                                                        ? 'AssignSoon'
+                                                        : widget.comp.data()[
+                                                            'PoliceStationName']),
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                'Subcategory:' +
+                                                    widget.comp
+                                                        .data()['sub category'],
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                'Category:' +
+                                                    widget.comp
+                                                        .data()['Catagory'],
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                'On Task Police officer :' +
+                                                    widget.comp
+                                                        .data()['OfficerName'],
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                'Type :' +
+                                                    widget.comp.data()['Type'],
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                'Status:' +
+                                                    widget.comp
+                                                        .data()['status'],
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                'Description:' +
+                                                    widget.comp
+                                                        .data()['Description'],
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  title: Text(
+                                    'Detail',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                ));
+                        // showModalBottomSheet(
+                        //     context: context,
+                        //     isScrollControlled: true,
+                        //     builder: (context) {
+                        //       return editEmail(
+                        //           context, "View Detail", widget.comp);
+                        //     });
                       },
                     ),
                     IconButton(

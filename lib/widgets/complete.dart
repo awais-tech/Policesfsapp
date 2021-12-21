@@ -1,7 +1,9 @@
+import 'dart:html';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:policesfs/ComplaintsFeedback.dart';
 
 class CompleteCompalints extends StatefulWidget {
   final comp;
@@ -122,6 +124,11 @@ Widget editEmail(BuildContext context, String title, compl) {
           Text('Detail'),
           Padding(
             padding: const EdgeInsets.all(8.0),
+            child: Text('Remarks:' + compl.data()[' SHOFeedback'],
+                softWrap: true, style: TextStyle(fontWeight: FontWeight.bold)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Text('PStationName:' + compl.data()['PoliceStationName'],
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
@@ -156,6 +163,23 @@ Widget editEmail(BuildContext context, String title, compl) {
             child: Text('Description:' + compl.data()['Description'],
                 softWrap: true, style: TextStyle(fontWeight: FontWeight.bold)),
           ),
+          compl.data()['Ufeedback'] == ""
+              ? Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                    icon: Icon(Icons.details_outlined),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed(FeedbacksC.routename, arguments: compl.id);
+                    },
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('My Feedback:' + compl.data()['Ufeedback'],
+                      softWrap: true,
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
         ],
       ),
     ),
