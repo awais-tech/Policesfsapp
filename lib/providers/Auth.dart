@@ -115,8 +115,10 @@ class Auth extends ChangeNotifier {
 
   Future<void> login(String email, String password) async {
     try {
+      print(email);
+      print(password);
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
-        email: email,
+        email: email.trim(),
         password: password,
       );
       final prefs = await SharedPreferences.getInstance();

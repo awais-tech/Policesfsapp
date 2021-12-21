@@ -46,6 +46,8 @@ class _SignInState extends State<SignIn> {
       _loading = true;
     });
     try {
+      print(_authData['email']);
+      print(_authData['password']);
       await Provider.of<Auth>(context, listen: false)
           .login(_authData['email']!, _authData['password']!);
     } on FirebaseAuthException catch (error) {
