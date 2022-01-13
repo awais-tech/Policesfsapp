@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:policesfs/models/Complaints.dart';
 import 'package:policesfs/models/User.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class Auth extends ChangeNotifier {
   String? _userId;
@@ -107,6 +108,19 @@ class Auth extends ChangeNotifier {
         });
       });
       notifyListeners();
+      final url = Uri.parse(
+          'https://fitnessappauth.herokuapp.com/api/users/TokenRefreshs');
+      Map<String, String> headers = {"Content-type": "application/json"};
+
+      var doc = await http.post(
+        url,
+        headers: headers,
+        body: json.encode({
+          'email': email,
+          'message':
+              "Hi !<br> You Complaint About  ${complaint.title} is submitted<br> <h1>Desscription</h1>:${complaint.description} <br> For see further detail please open the app",
+        }),
+      );
     } catch (e) {
       print(e);
       throw e;
@@ -215,6 +229,7 @@ class Auth extends ChangeNotifier {
         'Userid': 'without login',
         'sent by': complaint.sentby,
         'status': 'pending',
+        'PoliceStationName': complaint.policeStationName,
         'sub category': complaint.subcategory,
         'Complaint Location': location,
         'phone': phone,

@@ -1,8 +1,11 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:policesfs/models/Complaints.dart';
+import 'package:policesfs/screen/Chat/chat.dart';
 import 'package:provider/provider.dart';
 
 class PendingCompalints extends StatefulWidget {
@@ -43,7 +46,7 @@ class _PendingCompalintsState extends State<PendingCompalints> {
                     ),
                   ),
                   trailing: Container(
-                    width: MediaQuery.of(context).size.width * 0.30,
+                    width: MediaQuery.of(context).size.width * 0.20,
                     child: Expanded(
                       child: Row(
                         children: <Widget>[
@@ -169,6 +172,37 @@ class _PendingCompalintsState extends State<PendingCompalints> {
                             onPressed: () {
                               setState(() {
                                 _expanded = !_expanded;
+                              });
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(_expanded
+                                ? Icons.expand_less
+                                : Icons.expand_more),
+                            onPressed: () {
+                              setState(() {
+                                _expanded = !_expanded;
+                              });
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.chat),
+                            onPressed: () {
+                              var stationname =
+                                  widget.comp.data()['PoliceStationName'];
+                              FirebaseFirestore.instance
+                                  .collection("PoliceStaff")
+                                  .where("Role", isEqualTo: "Operator")
+                                  .where("PoliceStationDivision",
+                                      isEqualTo: stationname)
+                                  .get()
+                                  .then((val) {
+                                Navigator.of(context)
+                                    .pushNamed(Chat.routeName, arguments: {
+                                  "receiverid": val.docs[0].id,
+                                  "senderid":
+                                      FirebaseAuth.instance.currentUser!.uid,
+                                });
                               });
                             },
                           ),

@@ -8,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class NewMessage extends StatefulWidget {
   @override
   _NewMessageState createState() => _NewMessageState();
+  var id;
+  NewMessage(this.id);
 }
 
 class _NewMessageState extends State<NewMessage> {
@@ -27,7 +29,7 @@ class _NewMessageState extends State<NewMessage> {
       'message': _enteredMessage,
       'date': Timestamp.now(),
       'senderid': detail['uid'],
-      'receiverid': 'BXwySkot9bw59oDsbhN',
+      'receiverid': widget.id["receiverid"],
       'SenderName': detail['name'],
       'role': 'User'
     });

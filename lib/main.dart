@@ -8,6 +8,7 @@ import 'package:policesfs/providers/utilities.dart';
 import 'package:policesfs/screen/Aboutus.dart';
 import 'package:policesfs/screen/Auth/Signscreen.dart';
 import 'package:policesfs/screen/Auth/Signupscreen..dart';
+import 'package:policesfs/screen/Chat/ChatUser.dart';
 import 'package:policesfs/screen/Chat/chat.dart';
 import 'package:policesfs/screen/Dashboard.dart';
 import 'package:policesfs/screen/ManageComplaints/ComplaintEmergency.dart';
@@ -105,6 +106,7 @@ class _MyAppState extends State<MyApp> {
             Addcomplaint.routeName: (ctx) => Addcomplaint(),
             ComplaintEmergency.routeName: (ctx) => ComplaintEmergency(),
             AboutUs.routeName: (ctx) => AboutUs(),
+            ChatUser.routeName: (ctx) => ChatUser()
           },
         ),
       ),

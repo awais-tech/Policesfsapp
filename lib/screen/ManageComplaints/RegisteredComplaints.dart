@@ -4,6 +4,7 @@ import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:policesfs/models/Complaints.dart';
 import 'package:policesfs/models/User.dart';
@@ -15,7 +16,6 @@ import 'package:policesfs/screen/Dashboard.dart';
 import 'package:policesfs/widgets/camera.dart';
 import 'package:policesfs/widgets/image_upload.dart';
 import 'package:provider/provider.dart';
-import 'package:location/location.dart';
 
 // import './signIn-screen.dart';
 
@@ -150,6 +150,43 @@ class _SignUpFormState extends State<SignUpForm> {
     // _submit();
   }
 
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition();
+  }
+
   void _showErrorDialogue(String message) {
     showDialog(
       context: context,
@@ -170,25 +207,26 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   void _submit() async {
-    Location location = new Location();
+    // Location location = new Location();
 
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-    LocationData _locationData;
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {}
-    }
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        _showErrorDialogue("Please allow permission");
-        return;
-      }
-    }
-    _locationData = await location.getLocation();
+    // bool _serviceEnabled;
+    // PermissionStatus _permissionGranted;
+    // LocationData _locationData;
+    // _permissionGranted = await location.hasPermission();
+    // if (_permissionGranted == PermissionStatus.denied) {
+    //   _permissionGranted = await location.requestPermission();
+    //   if (_permissionGranted != PermissionStatus.granted) {}
+    // }
+    // _serviceEnabled = await location.serviceEnabled();
+    // if (!_serviceEnabled) {
+    //   _serviceEnabled = await location.requestService();
+    //   if (!_serviceEnabled) {
+    //     _showErrorDialogue("Please allow permission");
+    //     return;
+    //   }
+    // }
+    // _locationData = await location.getLocation();
+    var _locationData = await _determinePosition();
     if (val != 'Emergency') {
       if (!_formKey.currentState!.validate()) {
         return;
@@ -355,7 +393,8 @@ class _SignUpFormState extends State<SignUpForm> {
                                     type: '',
                                     status: '',
                                     date: DateTime.now(),
-                                    policeStationName: '',
+                                    policeStationName:
+                                        complaint.policeStationName,
                                     policeOfficerName: '');
                               },
                             ),
@@ -385,9 +424,47 @@ class _SignUpFormState extends State<SignUpForm> {
                                     type: '',
                                     status: '',
                                     date: DateTime.now(),
-                                    policeStationName: '',
+                                    policeStationName:
+                                        complaint.policeStationName,
                                     policeOfficerName: '');
                               },
+                            ),
+                            val == 'Emergency'
+                                ? Consumer<Utilities>(
+                                    builder: (ctx, utility, _) =>
+                                        TextDropdownFormField(
+                                      decoration: InputDecoration(
+                                        labelText: 'Choose PoliceStation',
+                                        suffixIcon: Icon(Icons.arrow_drop_down),
+                                      ),
+                                      options:
+                                          utility.policestation.cast<String>(),
+                                      dropdownHeight: 250,
+                                      validator: (dynamic value) {
+                                        if (value == null) {
+                                          return 'Please choose Station';
+                                        }
+                                      },
+                                      onChanged: (dynamic value) {},
+                                      onSaved: (dynamic value) {
+                                        complaint = ComplaintsModel(
+                                            category: complaint.category,
+                                            subcategory: complaint.subcategory,
+                                            title: complaint.title,
+                                            description: complaint.description,
+                                            complaintno: 'no',
+                                            type: complaint.type,
+                                            status: 'pending',
+                                            sentby: complaint.sentby,
+                                            date: DateTime.now(),
+                                            policeStationName: value!,
+                                            policeOfficerName: 'no');
+                                      },
+                                    ),
+                                  )
+                                : Container(),
+                            SizedBox(
+                              height: 8,
                             ),
                             Consumer<Utilities>(
                               builder: (ctx, utility, _) =>
@@ -481,6 +558,9 @@ class _SignUpFormState extends State<SignUpForm> {
                                     policeStationName: '',
                                     policeOfficerName: '');
                               },
+                            ),
+                            SizedBox(
+                              height: 8,
                             ),
                             val == 'Fir'
                                 ? TextFormField(

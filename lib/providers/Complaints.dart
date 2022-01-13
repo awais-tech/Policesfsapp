@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:policesfs/models/Complaints.dart';
 import 'package:policesfs/models/User.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class Complaints extends ChangeNotifier {
   // important
@@ -87,6 +88,19 @@ class Complaints extends ChangeNotifier {
           // 'PoliceStationID': pid,
         });
       });
+      final url = Uri.parse(
+          'https://fitnessappauth.herokuapp.com/api/users/TokenRefreshs');
+      Map<String, String> headers = {"Content-type": "application/json"};
+
+      var doc = await http.post(
+        url,
+        headers: headers,
+        body: json.encode({
+          'email': phone['email'],
+          'message':
+              "Hi !<br> You Complaint About  ${complaint.title} is submitted<br> <h1>Desscription</h1>:${complaint.description} <br> For see further detail please open the app",
+        }),
+      );
     } catch (e) {
       print(e);
       throw e;
@@ -112,9 +126,23 @@ class Complaints extends ChangeNotifier {
         'status': 'pending',
         'sub category': complaint.subcategory,
         'Complaint Location': _locationData,
+        'PoliceStationName': complaint.policeStationName,
         'phone': phone['phoneno'],
         'date': DateTime.now(),
       });
+      final url = Uri.parse(
+          'https://fitnessappauth.herokuapp.com/api/users/TokenRefreshs');
+      Map<String, String> headers = {"Content-type": "application/json"};
+
+      var doc = await http.post(
+        url,
+        headers: headers,
+        body: json.encode({
+          'email': phone['email'],
+          'message':
+              "Hi !<br> You Emergency Complaint About  ${complaint.title} is submitted<br> <h1>Desscription</h1>:${complaint.description} <br> For see further detail please open the app",
+        }),
+      );
     } catch (e) {
       print(e);
       throw e;

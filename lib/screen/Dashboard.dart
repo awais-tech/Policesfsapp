@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:policesfs/Constants.dart';
 import 'package:policesfs/providers/Auth.dart';
+import 'package:policesfs/screen/Chat/ChatUser.dart';
 
 import 'package:policesfs/screen/ManageComplaints/ComplaintHistoryScreen.dart';
 import 'package:policesfs/screen/ManageComplaints/RegisteredComplaints.dart';
@@ -223,7 +224,8 @@ class _ComplainantdashboardState extends State<Complainantdashboard> {
                             color: Colors.amber[400],
                             child: InkWell(
                               onTap: () {
-                                Navigator.of(context).pushNamed(Chat.routeName);
+                                Navigator.of(context)
+                                    .pushNamed(ChatUser.routeName);
                               },
                               child: Column(
                                 mainAxisAlignment:

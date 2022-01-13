@@ -6,6 +6,7 @@ class Chat extends StatelessWidget {
   static final routeName = 'Chat';
   @override
   Widget build(BuildContext context) {
+    var id = ModalRoute.of(context)?.settings.arguments as Map;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -27,9 +28,9 @@ class Chat extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(
-                  child: Messages(),
+                  child: Messages(id),
                 ),
-                NewMessage(),
+                NewMessage(id),
               ],
             ),
           ),
