@@ -21,7 +21,7 @@ class Complainantdashboard extends StatefulWidget {
     Icons.home,
     Icons.local_police_outlined,
     Icons.desktop_mac_rounded,
-    Icons.message,
+    Icons.messenger_rounded,
   ];
 
   @override
@@ -34,8 +34,8 @@ class _ComplainantdashboardState extends State<Complainantdashboard> {
   final List<String> navigators = [
     "Home",
     "About Us",
-    "Emergency Complaint detail",
-    "Whats app",
+    "Emergency Complaints Detail",
+    "WhatsApp",
   ];
 
   @override

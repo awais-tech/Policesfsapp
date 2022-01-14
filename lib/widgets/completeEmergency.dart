@@ -190,7 +190,7 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                     child: FittedBox(
                       fit: BoxFit.contain,
                       child: Text(
-                        'Complaint No :${widget.comp.data()['ComplaintNo']}',
+                        'Complaint No: ${widget.comp.data()['ComplaintNo']}',
                         softWrap: true,
                         style: TextStyle(
                           fontSize: 18,
@@ -221,42 +221,51 @@ Widget editEmail(BuildContext context, String title, compl) {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-                'PStationName:' +
+                'Police Station Name:\n' +
                     (compl.data()['PoliceStationName'] == null
                         ? 'AssignSoon'
                         : compl.data()['PoliceStationName']),
+                textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Subcategory:' + compl.data()['sub category'],
+            child: Text('Sub-Category:\n' + compl.data()['sub category'],
+                textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Category:' + compl.data()['Catagory'],
+            child: Text('Category:\n' + compl.data()['Catagory'],
+                textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-                'On Task Police officer :' + compl.data()['OfficerName'],
+                'Complaint Assigned to Police Officer:\n' +
+                    compl.data()['OfficerName'],
+                textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Type :' + compl.data()['Type'],
+            child: Text('Type:\n' + compl.data()['Type'],
+                textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Status:' + compl.data()['status'],
+            child: Text('Status:\n' + compl.data()['status'],
+                textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Description:' + compl.data()['Description'],
-                softWrap: true, style: TextStyle(fontWeight: FontWeight.bold)),
+            child: Text('Description:\n' + compl.data()['Description'],
+                textAlign: TextAlign.center,
+                softWrap: true,
+                style: TextStyle(fontWeight: FontWeight.bold)),
           ),
         ],
       ),

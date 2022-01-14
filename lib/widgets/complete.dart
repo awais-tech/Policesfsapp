@@ -19,34 +19,28 @@ class _CompleteCompalintsState extends State<CompleteCompalints> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6,
-      margin: EdgeInsets.all(6),
+      elevation: 10,
+      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: CircleAvatar(
-              radius: 40,
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Text(
-                  ' ${widget.comp.data()['Title']} ',
-                  softWrap: true,
-                ),
-              ),
+            title: Text(
+              '${widget.comp.data()['Title']} ',
+              softWrap: true,
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            subtitle: FittedBox(
-              child: Text(
-                DateFormat('dd/MM/yyyy hh:mm')
-                    .format(widget.comp.data()['date'].toDate()),
-              ),
+            subtitle: Text(
+              DateFormat('dd/MM/yyyy hh:mm')
+                  .format(widget.comp.data()['date'].toDate()),
             ),
             trailing: Container(
-              width: MediaQuery.of(context).size.width * 0.30,
+              width: 100,
               child: Expanded(
                 child: Row(
                   children: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.details_outlined),
+                      icon: Icon(Icons.info_outline_rounded),
+                      color: Colors.red[900],
                       onPressed: () {
                         showModalBottomSheet(
                             context: context,
@@ -60,6 +54,7 @@ class _CompleteCompalintsState extends State<CompleteCompalints> {
                     IconButton(
                       icon: Icon(
                           _expanded ? Icons.expand_less : Icons.expand_more),
+                      color: Colors.red[900],
                       onPressed: () {
                         setState(() {
                           _expanded = !_expanded;
@@ -80,7 +75,7 @@ class _CompleteCompalintsState extends State<CompleteCompalints> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.40,
                     child: Text(
-                      'Description: ${widget.comp.data()['Description']}',
+                      'Description:\n ${widget.comp.data()['Description']}',
                       softWrap: true,
                       style: TextStyle(
                         fontSize: 10,
@@ -93,10 +88,10 @@ class _CompleteCompalintsState extends State<CompleteCompalints> {
                     child: FittedBox(
                       fit: BoxFit.contain,
                       child: Text(
-                        'Complaint No :${widget.comp.data()['ComplaintNo']}',
+                        'Complaint No:${widget.comp.data()['ComplaintNo']}',
                         softWrap: true,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 10,
                           color: Colors.grey,
                         ),
                       ),
@@ -104,7 +99,8 @@ class _CompleteCompalintsState extends State<CompleteCompalints> {
                   )
                 ],
               ),
-            )
+            ),
+          SizedBox(height: 10),
         ],
       ),
     );

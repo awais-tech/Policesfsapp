@@ -23,191 +23,181 @@ class _PendingCompalintsState extends State<PendingCompalints> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6,
-      margin: EdgeInsets.all(6),
+      elevation: 10,
+      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
         children: <Widget>[
           widget.comp.data()['status'] != "disapprove"
               ? ListTile(
-                  leading: CircleAvatar(
-                    radius: 40,
-                    child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: Text(
-                        ' ${widget.comp.data()['Title']} ',
-                        softWrap: true,
-                      ),
-                    ),
+                  title: Text(
+                    '${widget.comp.data()['Title']} ',
+                    softWrap: true,
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  subtitle: FittedBox(
-                    child: Text(
-                      DateFormat('dd/MM/yyyy hh:mm')
-                          .format(widget.comp.data()['date'].toDate()),
-                    ),
+                  subtitle: Text(
+                    DateFormat('dd/MM/yyyy hh:mm')
+                        .format(widget.comp.data()['date'].toDate()),
                   ),
                   trailing: Container(
-                    width: MediaQuery.of(context).size.width * 0.20,
-                    child: Expanded(
-                      child: Row(
-                        children: <Widget>[
-                          IconButton(
-                            icon: Icon(Icons.details_outlined),
-                            onPressed: () async {
-                              await showDialog(
-                                  context: context,
-                                  builder: (ctx) => AlertDialog(
-                                        content: Padding(
-                                          padding:
-                                              MediaQuery.of(context).viewInsets,
-                                          child: Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 10.0,
-                                                horizontal: 20.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Text(
-                                                      'PStationName:' +
-                                                          widget.comp.data()[
-                                                              'PoliceStationName'],
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Text(
-                                                      'Subcategory:' +
-                                                          widget.comp.data()[
-                                                              'sub category'],
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Text(
-                                                      'Category:' +
-                                                          widget.comp.data()[
-                                                              'Catagory'],
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Text(
-                                                      'On Task Police officer :' +
-                                                          widget.comp.data()[
-                                                              'OfficerName'],
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Text(
-                                                      'Type :' +
-                                                          widget.comp
-                                                              .data()['Type'],
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Text(
-                                                      'Status:' +
-                                                          widget.comp
-                                                              .data()['status'],
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Text(
-                                                      'Description:' +
-                                                          widget.comp.data()[
-                                                              'Description'],
-                                                      softWrap: true,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                ),
-                                              ],
-                                            ),
+                    width: 150,
+                    child: Row(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.info_outline_rounded),
+                          color: Colors.red[900],
+                          onPressed: () async {
+                            await showDialog(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                      content: Padding(
+                                        padding:
+                                            MediaQuery.of(context).viewInsets,
+                                        child: Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 10.0, horizontal: 20.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Text(
+                                                    'Police Station Name:\n' +
+                                                        widget.comp.data()[
+                                                            'PoliceStationName'],
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Text(
+                                                    'Sub-Category:\n' +
+                                                        widget.comp.data()[
+                                                            'sub category'],
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Text(
+                                                    'Category:\n' +
+                                                        widget.comp
+                                                            .data()['Catagory'],
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                    'Complaint Assigned to Police Officer:\n' +
+                                                        widget.comp.data()[
+                                                            'OfficerName'],
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Text(
+                                                    'Type:\n' +
+                                                        widget.comp
+                                                            .data()['Type'],
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Text(
+                                                    'Status:\n' +
+                                                        widget.comp
+                                                            .data()['status'],
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Text(
+                                                    'Description:\n' +
+                                                        widget.comp.data()[
+                                                            'Description'],
+                                                    softWrap: true,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        title: Text(
-                                          'Detail',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(color: Colors.red),
-                                        ),
-                                      ));
-                              // showModalBottomSheet(
-                              //     context: context,
-                              //     isScrollControlled: true,
-                              //     builder: (context) {
-                              //       return editEmail(
-                              //           context, "View Detail", widget.comp);
-                              //     });
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(_expanded
-                                ? Icons.expand_less
-                                : Icons.expand_more),
-                            onPressed: () {
-                              setState(() {
-                                _expanded = !_expanded;
+                                      ),
+                                      title: Text(
+                                        'Detail',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                    ));
+                            // showModalBottomSheet(
+                            //     context: context,
+                            //     isScrollControlled: true,
+                            //     builder: (context) {
+                            //       return editEmail(
+                            //           context, "View Detail", widget.comp);
+                            //     });
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.chat),
+                          color: Colors.red[900],
+                          onPressed: () {
+                            var stationname =
+                                widget.comp.data()['PoliceStationName'];
+                            FirebaseFirestore.instance
+                                .collection("PoliceStaff")
+                                .where("Role", isEqualTo: "Operator")
+                                .where("PoliceStationDivision",
+                                    isEqualTo: stationname)
+                                .get()
+                                .then((val) {
+                              Navigator.of(context)
+                                  .pushNamed(Chat.routeName, arguments: {
+                                "receiverid": val.docs[0].id,
+                                "senderid":
+                                    FirebaseAuth.instance.currentUser!.uid,
                               });
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(_expanded
-                                ? Icons.expand_less
-                                : Icons.expand_more),
-                            onPressed: () {
-                              setState(() {
-                                _expanded = !_expanded;
-                              });
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.chat),
-                            onPressed: () {
-                              var stationname =
-                                  widget.comp.data()['PoliceStationName'];
-                              FirebaseFirestore.instance
-                                  .collection("PoliceStaff")
-                                  .where("Role", isEqualTo: "Operator")
-                                  .where("PoliceStationDivision",
-                                      isEqualTo: stationname)
-                                  .get()
-                                  .then((val) {
-                                Navigator.of(context)
-                                    .pushNamed(Chat.routeName, arguments: {
-                                  "receiverid": val.docs[0].id,
-                                  "senderid":
-                                      FirebaseAuth.instance.currentUser!.uid,
-                                });
-                              });
-                            },
-                          ),
-                        ],
-                      ),
+                            });
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(_expanded
+                              ? Icons.expand_less
+                              : Icons.expand_more),
+                          color: Colors.red[900],
+                          onPressed: () {
+                            setState(() {
+                              _expanded = !_expanded;
+                            });
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 )
@@ -248,11 +238,10 @@ class _PendingCompalintsState extends State<PendingCompalints> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.40,
                     child: Text(
-                      'Description: ${widget.comp.data()['Description']}',
+                      'Description: \n${widget.comp.data()['Description']}',
                       softWrap: true,
                       style: TextStyle(
                         fontSize: 10,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -261,10 +250,10 @@ class _PendingCompalintsState extends State<PendingCompalints> {
                     child: FittedBox(
                       fit: BoxFit.contain,
                       child: Text(
-                        'Complaint No :${widget.comp.data()['ComplaintNo']}',
+                        'Complaint No: ${widget.comp.data()['ComplaintNo']}',
                         softWrap: true,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 10,
                           color: Colors.grey,
                         ),
                       ),

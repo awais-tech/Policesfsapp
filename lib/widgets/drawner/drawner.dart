@@ -33,13 +33,12 @@ class Drawner extends StatelessWidget {
                         .decode(snapshot.data.getString('userinfo') as String);
                     children = <Widget>[
                       Container(
-                        color: Colors.blue,
                         child: UserAccountsDrawerHeader(
-                          decoration: BoxDecoration(color: Colors.blue),
+                          decoration: BoxDecoration(color: Colors.blue[900]),
                           accountEmail: Text(c['email']),
                           accountName: Text(c['name']),
                           currentAccountPicture: CircleAvatar(
-                            backgroundColor: Colors.red,
+                            backgroundColor: Colors.blueGrey,
                           ),
                         ),
                       )
@@ -79,9 +78,9 @@ class Drawner extends StatelessWidget {
                 },
               ),
               Container(
-                color: Colors.blue[900],
+                color: Colors.white,
                 height: constraints.minHeight * 0.7,
-                child: ListView.builder(
+                child: ListView.separated(
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: navigators.length,
                     itemBuilder: (context, index) {
@@ -108,13 +107,19 @@ class Drawner extends StatelessWidget {
                           },
                           leading: Icon(
                             Complainantdashboard.navigatorsIcon[index],
-                            color: Colors.white,
+                            color: Colors.blue[900],
                           ),
                           title: Text(
                             "${navigators[index]}",
-                            style: TextStyle(fontSize: 15, color: Colors.white),
+                            style: TextStyle(fontSize: 15, color: Colors.black),
                           ),
                         ),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        thickness: 0.5,
+                        color: Colors.black,
                       );
                     }),
               ),
