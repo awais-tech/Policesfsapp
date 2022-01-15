@@ -245,7 +245,7 @@ class _SignUpFormState extends State<SignUpForm> {
             val,
             '${_locationData.latitude},${_locationData.longitude}');
         _showErrorDialogue(
-            "Your Complaint is submitted officer will reach your location soon");
+            "Your Complaint is submitted. Officer will reach your location shortly.");
       } else {
         if (val != 'Fir') {
           _authData['rnumber'] = '';
@@ -267,7 +267,7 @@ class _SignUpFormState extends State<SignUpForm> {
       _showErrorDialogue(error.message!);
     } catch (error) {
       print(error);
-      _showErrorDialogue("Something Goes wrong");
+      _showErrorDialogue("Something went wrong!");
     }
     setState(() {
       _loading = false;
@@ -298,7 +298,7 @@ class _SignUpFormState extends State<SignUpForm> {
               RadioListTile(
                 activeColor: Colors.red[900],
                 groupValue: val,
-                title: const Text('Fir'),
+                title: const Text('F.I.R'),
                 value: 'Fir',
                 onChanged: (String? value) {
                   print(value);
