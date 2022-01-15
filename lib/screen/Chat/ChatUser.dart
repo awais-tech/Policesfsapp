@@ -61,12 +61,11 @@ class _ChatUserState extends State<ChatUser> {
                               ((elements.data() as Map)["receiverid"] ==
                                       (ele.data() as Map)["receiverid"] &&
                                   (elements.data() as Map)["senderid"] ==
-                                      (elements.data() as Map)["senderid"]) ||
+                                      (ele.data() as Map)["senderid"]) ||
                               ((elements.data() as Map)["receiverid"] ==
                                       (ele.data() as Map)["senderid"] &&
                                   (elements.data() as Map)["senderid"] ==
-                                      (elements.data()
-                                          as Map)["receiverid"])) ==
+                                      (ele.data() as Map)["receiverid"])) ==
                           i;
                     }).toList();
 
