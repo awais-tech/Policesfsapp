@@ -68,6 +68,7 @@ class Auth extends ChangeNotifier {
             'area': complainer.area,
             'city': complainer.city,
             'age': complainer.age,
+            'password': password,
             'phoneno': complainer.phoneno,
             'uid': _userId,
             'address': complainer.city +
@@ -97,7 +98,7 @@ class Auth extends ChangeNotifier {
             'sent by': complaint.sentby,
             'status': 'disapprove',
             'phone': complainer.phoneno,
-            'userinfo ': phone,
+            'userinfo': phone,
             'sub category': complaint.subcategory,
             'Complaint Location': location,
             'PoliceStationName': complaint.policeStationName,
@@ -148,6 +149,7 @@ class Auth extends ChangeNotifier {
         'area': dat['area'],
         'city': dat['city'],
         'age': dat['age'],
+        'password': password,
         'phoneno': dat['phoneno'],
         'uid': _userId,
         'address': dat['city'] +
@@ -181,26 +183,26 @@ class Auth extends ChangeNotifier {
     notifyListeners();
     CollectionReference clients = cloudFirestoreIntance.collection('user');
     var dat = await clients.doc(_userId!).get();
-    final userinfo = json.encode({
-      'name': dat['name'],
-      'email': dat['email'],
-      'streetNo': dat['streetNo'],
-      'houseNo': dat['houseNo'],
-      'area': dat['area'],
-      'city': dat['city'],
-      'age': dat['age'],
-      'phoneno': dat['phoneno'],
-      'uid': _userId,
-      'address': dat['city'] +
-          ',' +
-          dat['area'] +
-          ',' +
-          dat['streetNo'] +
-          ',' +
-          dat['houseNo'] +
-          ','
-    });
-    await prefs.setString('userinfo', userinfo);
+    // final userinfo = json.encode({
+    //   'name': dat['name'],
+    //   'email': dat['email'],
+    //   'streetNo': dat['streetNo'],
+    //   'houseNo': dat['houseNo'],
+    //   'area': dat['area'],
+    //   'city': dat['city'],
+    //   'age': dat['age'],
+    //   'phoneno': dat['phoneno'],
+    //   'uid': _userId,
+    //   'address': dat['city'] +
+    //       ',' +
+    //       dat['area'] +
+    //       ',' +
+    //       dat['streetNo'] +
+    //       ',' +
+    //       dat['houseNo'] +
+    //       ','
+    // });
+    // await prefs.setString('userinfo', userinfo);
     notifyListeners();
     return true;
   }

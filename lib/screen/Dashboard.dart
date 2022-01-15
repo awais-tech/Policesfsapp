@@ -18,9 +18,9 @@ import 'package:url_launcher/url_launcher.dart';
 class Complainantdashboard extends StatefulWidget {
   static final routeName = "home";
   static List<IconData> navigatorsIcon = [
-    Icons.home,
-    Icons.local_police_outlined,
     Icons.desktop_mac_rounded,
+    Icons.local_police_outlined,
+    Icons.verified_user_outlined,
     Icons.messenger_rounded,
   ];
 
@@ -32,9 +32,9 @@ class _ComplainantdashboardState extends State<Complainantdashboard> {
   var prefs;
 
   final List<String> navigators = [
-    "Home",
-    "About Us",
     "Emergency Complaints Detail",
+    "About Us",
+    "Profile",
     "WhatsApp",
   ];
 

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:policesfs/Profile.dart';
 import 'package:policesfs/providers/Auth.dart';
 import 'package:policesfs/providers/Complaints.dart';
 
@@ -106,7 +107,8 @@ class _MyAppState extends State<MyApp> {
             Addcomplaint.routeName: (ctx) => Addcomplaint(),
             ComplaintEmergency.routeName: (ctx) => ComplaintEmergency(),
             AboutUs.routeName: (ctx) => AboutUs(),
-            ChatUser.routeName: (ctx) => ChatUser()
+            ChatUser.routeName: (ctx) => ChatUser(),
+            Profile.routeName: (ctx) => Profile()
           },
         ),
       ),

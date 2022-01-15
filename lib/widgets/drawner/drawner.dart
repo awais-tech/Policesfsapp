@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:policesfs/Profile.dart';
 import 'package:policesfs/screen/Aboutus.dart';
 import 'package:policesfs/screen/Dashboard.dart';
 import 'package:policesfs/screen/ManageComplaints/ComplaintEmergency.dart';
@@ -89,12 +90,15 @@ class Drawner extends StatelessWidget {
                         child: ListTile(
                           onTap: () async {
                             if (navigators[index] ==
-                                "Emergency Complaint detail") {
+                                "Emergency Complaints Detail") {
                               Navigator.of(context)
                                   .pushNamed(ComplaintEmergency.routeName);
                             } else if (navigators[index] == "About Us") {
                               Navigator.of(context)
                                   .pushNamed(AboutUs.routeName);
+                            } else if (navigators[index] == "Profile") {
+                              Navigator.of(context)
+                                  .pushNamed(Profile.routeName);
                             } else if (navigators[index] == "WhatsApp") {
                               var url =
                                   "whatsapp://send?text=Emgergency need help&phone=+923324343256";
