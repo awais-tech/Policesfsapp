@@ -52,21 +52,13 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                   ),
                 )
               : ListTile(
-                  leading: CircleAvatar(
-                    radius: 40,
-                    child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: Text(
-                        ' ${widget.comp.data()['Title']} ',
-                        softWrap: true,
-                      ),
-                    ),
+                  title: Text(
+                    '${widget.comp.data()['Title']} ',
+                    softWrap: true,
                   ),
-                  subtitle: FittedBox(
-                    child: Text(
-                      DateFormat('dd/MM/yyyy hh:mm')
-                          .format(widget.comp.data()['date'].toDate()),
-                    ),
+                  subtitle: Text(
+                    DateFormat('dd/MM/yyyy hh:mm')
+                        .format(widget.comp.data()['date'].toDate()),
                   ),
                   trailing: Container(
                     width: MediaQuery.of(context).size.width * 0.30,
@@ -74,7 +66,8 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                       child: Row(
                         children: <Widget>[
                           IconButton(
-                            icon: Icon(Icons.details_outlined),
+                            icon: Icon(Icons.info_outline),
+                            color: Colors.red[900],
                             onPressed: () async {
                               await showDialog(
                                   context: context,
@@ -91,12 +84,11 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceAround,
                                               children: [
-                                                Text('Detail'),
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: Text(
-                                                      'PStationName:' +
+                                                      'Police Station Name:\n' +
                                                           (widget.comp.data()[
                                                                       'PoliceStationName'] ==
                                                                   null
@@ -104,6 +96,8 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                                                               : widget.comp
                                                                       .data()[
                                                                   'PoliceStationName']),
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold)),
@@ -112,9 +106,11 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: Text(
-                                                      'Subcategory:' +
+                                                      'Sub-Category:\n' +
                                                           widget.comp.data()[
                                                               'sub category'],
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold)),
@@ -123,9 +119,11 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: Text(
-                                                      'Category:' +
+                                                      'Category:\n' +
                                                           widget.comp.data()[
                                                               'Catagory'],
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold)),
@@ -134,9 +132,11 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: Text(
-                                                      'On Task Police officer :' +
+                                                      'On Task Police officer:\n' +
                                                           widget.comp.data()[
                                                               'OfficerName'],
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold)),
@@ -145,9 +145,11 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: Text(
-                                                      'Type :' +
+                                                      'Type:\n' +
                                                           widget.comp
                                                               .data()['Type'],
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold)),
@@ -156,9 +158,11 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: Text(
-                                                      'Status:' +
+                                                      'Status:\n' +
                                                           widget.comp
                                                               .data()['status'],
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold)),
@@ -167,9 +171,11 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: Text(
-                                                      'Description:' +
+                                                      'Description:\n' +
                                                           widget.comp.data()[
                                                               'Description'],
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       softWrap: true,
                                                       style: TextStyle(
                                                           fontWeight:
@@ -198,6 +204,7 @@ class _ComplEmergencyState extends State<ComplEmergency> {
                             icon: Icon(_expanded
                                 ? Icons.expand_less
                                 : Icons.expand_more),
+                            color: Colors.red[900],
                             onPressed: () {
                               setState(() {
                                 _expanded = !_expanded;
