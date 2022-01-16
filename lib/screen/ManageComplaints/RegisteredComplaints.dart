@@ -496,7 +496,8 @@ class _SignUpFormState extends State<SignUpForm> {
                                       type: '',
                                       status: '',
                                       date: DateTime.now(),
-                                      policeStationName: '',
+                                      policeStationName:
+                                          complaint.policeStationName,
                                       policeOfficerName: '');
                                 },
                               ),
