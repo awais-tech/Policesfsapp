@@ -74,15 +74,19 @@ class _SignUpFormState extends State<SignUpForm> {
   bool _loading = true;
   // Location location = new Location();
   // late LocationData _locationData;
+  bool isCnic(String em) {
+    String p = r'^[0-9]{5}-[0-9]{7}-[0-9]$';
+    RegExp regExp = new RegExp(p);
+
+    return regExp.hasMatch(em);
+  }
 
   Map<String, String> _authData = {
     'email': '',
     'password': '',
     'rnumber': '',
   };
-  Map<String, String> need = {
-    'phone': '',
-  };
+  Map<String, String> need = {'phone': '', "CNIC": ""};
   var index = 0;
   var _complainer = Complainer(
       name: '',
@@ -293,6 +297,7 @@ class _SignUpFormState extends State<SignUpForm> {
           val,
           download,
           _authData['rnumber']!,
+          need["CNIC"],
           '${_locationData.latitude},${_locationData.longitude}',
         );
 
@@ -566,6 +571,24 @@ class _SignUpFormState extends State<SignUpForm> {
                                     age: value!,
                                     phoneno: '',
                                     uid: '');
+                              },
+                            ),
+                            TextFormField(
+                              initialValue: _complainer.phoneno,
+                              decoration: InputDecoration(
+                                  labelText: 'CNIC',
+                                  prefixIcon: Icon(Icons.verified_user)),
+                              keyboardType: TextInputType.streetAddress,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter CNIC.';
+                                } else if (!isCnic(value)) {
+                                  return 'Please enter valid Cnic.';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                need["CNIC"] = value!;
                               },
                             ),
                             TextFormField(

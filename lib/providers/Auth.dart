@@ -18,8 +18,16 @@ class Auth extends ChangeNotifier {
     return _userId != null;
   }
 
-  Future<void> signUp(String email, String password, Complainer complainer,
-      ComplaintsModel complaint, val, String image, rnumber, location) async {
+  Future<void> signUp(
+      String email,
+      String password,
+      Complainer complainer,
+      ComplaintsModel complaint,
+      val,
+      String image,
+      rnumber,
+      CNIC,
+      location) async {
     CollectionReference clients = cloudFirestoreIntance.collection('user');
     CollectionReference complaints =
         cloudFirestoreIntance.collection('Complaints');
@@ -51,6 +59,7 @@ class Auth extends ChangeNotifier {
             'age': complainer.age,
             'phoneno': complainer.phoneno,
             'uid': _userId,
+            'CNIC': CNIC,
             'address': complainer.city +
                 ',' +
                 complainer.area +
