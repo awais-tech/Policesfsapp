@@ -574,7 +574,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               },
                             ),
                             TextFormField(
-                              initialValue: _complainer.phoneno,
+                              initialValue: need["CNIC"],
                               decoration: InputDecoration(
                                   labelText: 'CNIC',
                                   prefixIcon: Icon(Icons.verified_user)),

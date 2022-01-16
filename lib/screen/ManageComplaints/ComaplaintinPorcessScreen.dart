@@ -13,7 +13,7 @@ class OrdersInProcess extends StatelessWidget {
   final stream = FirebaseFirestore.instance
       .collection('Complaints')
       .where('Userid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-      .where('status', whereIn: ['Active', 'Assigned', "Request"]).snapshots();
+      .where('status', whereIn: ['Active', 'assigned', "Request"]).snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +68,7 @@ class OrdersInProcess extends StatelessWidget {
                         (snp.data!.docs[i].data() as Map)['status'] ==
                                     'Active' ||
                                 (snp.data!.docs[i].data() as Map)['status'] ==
-                                    'Assigned' ||
+                                    'assigned' ||
                                 (snp.data!.docs[i].data() as Map)['status'] ==
                                     'Request'
                             ? PendingCompalints(snp.data!.docs[i])
