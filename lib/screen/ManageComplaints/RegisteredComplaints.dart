@@ -527,7 +527,8 @@ class _SignUpFormState extends State<SignUpForm> {
                                       type: '',
                                       status: '',
                                       date: DateTime.now(),
-                                      policeStationName: '',
+                                      policeStationName:
+                                          complaint.policeStationName,
                                       policeOfficerName: '');
                                 }),
                             TextFormField(
@@ -555,7 +556,8 @@ class _SignUpFormState extends State<SignUpForm> {
                                     status: '',
                                     sentby: value!,
                                     date: DateTime.now(),
-                                    policeStationName: '',
+                                    policeStationName:
+                                        complaint.policeStationName,
                                     policeOfficerName: '');
                               },
                             ),
